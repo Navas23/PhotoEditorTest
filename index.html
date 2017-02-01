@@ -3,14 +3,41 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-  <section class="page">
-    <canvas id="canvas" width="1024" height="768"></canvas>
+  <section class="image">
+    <canvas id="canvas" width="640" height="480"></canvas>
   </section>
-  <button type="button" name="button" onclick="filtra1()">Filtro 1</button>
-  <button type="button" name="button" onclick="filtra2()">Filtro 2</button>
-  <button type="button" name="button" onclick="filtra3()">Filtro 3</button>
-  <input id="test" type="range" min ="-25" max="25" step ="1" value ="0" onchange="modificarActual(this.value)"/>
-  <span class="actual"></span>
-  <script src="script.js"></script>
+  <section class="controllers">
 
+    <section class="section grayscale">
+      <div class="title">#Escala de grises#</div>
+      <input id="test" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('grayscale',this.value)"/>
+      <input class="actual" type="number" min ="0" max="100" step ="1" value ="0">
+      <button type="button" name="button" onclick="reset()">Reset</button>
+    </section>
+
+    <section class="section contrast">
+      <div class="title">#Contraste#</div>
+      <input id="test" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('contrast',this.value)"/>
+      <input class="actual" type="number" min ="0" max="250" step ="1" value ="100">
+      <button type="button" name="button" onclick="reset()">Reset</button>
+    </section>
+
+    <section class="section brightness">
+      <div class="title">#Brillo#</div>
+      <input id="test" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('brightness',this.value)"/>
+      <input class="actual" type="number" min ="0" max="250" step ="1" value ="100">
+      <button type="button" name="button" onclick="reset()">Reset</button>
+    </section>
+
+    <section class="section opacity">
+      <div class="title">#Opacidad#</div>
+      <input id="test" type="range" min ="0" max="100" step ="1" value ="100" oninput="modifyValue('opacity',this.value)"/>
+      <input class="actual" type="number" min ="0" max="100" step ="1" value ="100">
+      <button type="button" name="button" onclick="reset()">Reset</button>
+    </section>
+
+  </section>
+
+
+  <script src="script.js"></script>
 </body>

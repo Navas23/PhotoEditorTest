@@ -1,8 +1,47 @@
-.page{
+body{
+  margin: 0;
+}
+
+*{
+  font-family: Cambria;
+}
+
+.image{
+  float: left;
   margin-bottom: 5px;
+  width: calc(100% - 240px);
+  height: 100%;
+  text-align: center;
 }
 
 canvas{
-  width: 1024px;
-  height: 768px;
+  width: 640px;
+  height: 480px;
+}
+
+.controllers{
+  float: right;
+  margin-bottom: 5px;
+  width: 240px;
+  height: 100%;
+}
+
+.controllers .section{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.controllers .section input, .controllers .section button{
+  float: left;
+}
+
+.controllers .section .title{
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.controllers .section .actual{
+  width: 45px;
 }
