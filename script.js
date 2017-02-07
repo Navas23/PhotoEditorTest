@@ -1,8 +1,11 @@
 var img = new Image();
-img.src = 'test2.jpg';
+img.src = 'test.jpg';
 img.crossOrigin = "Anonymous";
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+
+var canvasToDownload = $('#full-size-img');
+var ctxToDownload = canvasToDownload[0].getContext('2d');
 
 var initValues = {
   'grayscale' : 0,
@@ -30,6 +33,30 @@ var initFilters = function(){
 
 }
 
+var initCanvasToDownload = function(){
+
+  canvasToDownload.css({
+    'width': img.width,
+    'height': img.height,
+  })
+
+  .attr({
+    'width': img.width,
+    'height': img.height,
+  });
+
+  ctxToDownload.drawImage(img, 0, 0, img.width, img.height);
+
+}
+
+var initCanvasPreview = function(){
+
+  ctx.filter = 'grayscale(0%) contrast(100%) brightness(100%) hue-rotate(0deg) invert(0%) saturate(100%) sepia(0%)';
+  ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
+                     0, 0, canvas.width, canvas.height); // destination rectangle
+
+}
+
 var modifyValue = function( type, value ){
 
 
@@ -42,10 +69,9 @@ var modifyValue = function( type, value ){
   console.log( type + '(' + parseInt(value) + unit + ')' );
   console.log(ctx.filter);*/
 
-  $( '.' + type + ' .actual').val( value );
+  $( '.' + type + ' input').val( value );
   ctx.filter = ctx.filter.replace( type + '(' + parseInt( actualValues[type] ) + unit + ')' , type + '(' + parseInt(value) + unit + ')');
   actualValues[type] = parseInt(value);
-
   redrawImage();
 
 }
@@ -56,16 +82,17 @@ var redrawImage = function(){
 
 var guardar = function(){
 
-  var dataURL = canvas.toDataURL();
+  ctxToDownload.filter = ctx.filter;
+  ctxToDownload.drawImage(img, 0, 0, img.width, img.height);
+  var dataURL = canvasToDownload[0].toDataURL('image/jpeg',1.0);
   window.open(dataURL);
-  
+
 }
 
 img.onload = function() {
 
-  ctx.filter = 'grayscale(0%) contrast(100%) brightness(100%) hue-rotate(0deg) invert(0%) saturate(100%) sepia(0%)';
-  ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
-                     0, 0, canvas.width, canvas.height); // destination rectangle
-  console.log(ctx);
+  console.log('load');
+  initCanvasToDownload()
+  initCanvasPreview();
 
 };

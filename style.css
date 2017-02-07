@@ -1,9 +1,16 @@
 body{
-  margin: 0;
+  margin: 8px 0 0 0;
 }
 
 *{
   font-family: Cambria;
+}
+
+#full-size-img{
+  top: 0;
+  left: 0;
+  display: none;
+  position: absolute;
 }
 
 .image{
@@ -14,7 +21,7 @@ body{
   text-align: center;
 }
 
-canvas{
+#canvas{
   width: 640px;
   height: 480px;
 }
