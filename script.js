@@ -5,26 +5,47 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 var initValues = {
-  grayscale : 0,
-  contrast : 100,
-  brightness : 100
+  'grayscale' : 0,
+  'contrast' : 100,
+  'brightness' : 100,
+  'hue-rotate' : 0,
+  'invert' : 0,
+  'saturate' : 100,
+  'sepia' : 0
 }
-var actualValues = {
-  grayscale : 0,
-  contrast : 100,
-  brightness : 100
-}
+
+var actualValues = JSON.parse( JSON.stringify( initValues ) );
+
 var maxValues = {
-  grayscale : 100,
-  contrast : 250,
-  brightness : 250
+  'grayscale' : 100,
+  'contrast' : 250,
+  'brightness' : 250,
+  'hue-rotate' : 360,
+  'invert' : 100,
+  'saturate' : 250,
+  'sepia' : 100
+}
+
+var initFilters = function(){
+
 }
 
 var modifyValue = function( type, value ){
 
+
+  var unit = '%';
+  if( type === 'hue-rotate' ){
+    unit = 'deg'
+  }
+
+  /*console.log( type + '(' + parseInt( actualValues[type] ) + unit + ')' );
+  console.log( type + '(' + parseInt(value) + unit + ')' );
+  console.log(ctx.filter);*/
+
   $( '.' + type + ' .actual').val( value );
-  ctx.filter = type + '(' + parseInt(value) + '%)';
-  console.log( ctx.filter );
+  ctx.filter = ctx.filter.replace( type + '(' + parseInt( actualValues[type] ) + unit + ')' , type + '(' + parseInt(value) + unit + ')');
+  actualValues[type] = parseInt(value);
+
   redrawImage();
 
 }
@@ -34,34 +55,17 @@ var redrawImage = function(){
 }
 
 var guardar = function(){
-  console.log(this);
+
   var dataURL = canvas.toDataURL();
   window.open(dataURL);
+  
 }
 
 img.onload = function() {
 
+  ctx.filter = 'grayscale(0%) contrast(100%) brightness(100%) hue-rotate(0deg) invert(0%) saturate(100%) sepia(0%)';
   ctx.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
                      0, 0, canvas.width, canvas.height); // destination rectangle
   console.log(ctx);
-  /*img.style.display = 'none';
-  imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  console.log(imageData);*/
 
 };
-
-
-//canvas.addEventListener( 'mousemove',  );
-
-/*var color = document.getElementById('color');
-
-var pick = function(event) {
-  var x = event.layerX;
-  var y = event.layerY;
-  var pixel = ctx.getImageData(x, y, 1, 1);
-  var data = pixel.data;
-  var rgba = 'rgba(' + data[0] + ',' + data[1] +
-             ',' + data[2] + ',' + (data[3] / 255) + ')';
-  color.style.background =  rgba;
-  color.textContent = rgba;
-}*/
