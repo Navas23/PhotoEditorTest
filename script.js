@@ -1,6 +1,6 @@
 var img = new Image();
-img.src = 'test.jpg';
-img.crossOrigin = "Anonymous";
+//img.src = 'test.jpg';
+//img.crossOrigin = "Anonymous";
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -96,3 +96,11 @@ img.onload = function() {
   initCanvasPreview();
 
 };
+
+$("#file_input").change(function(e){
+
+    var URL = window.URL || window.webkitURL;
+    var url = URL.createObjectURL(e.target.files[0]);
+    img.src = url;
+
+});
