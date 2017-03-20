@@ -10,51 +10,51 @@
 
     <section class="section grayscale">
       <div class="title">#Escala de grises#</div>
-      <input id="test" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('grayscale',this.value)"/>
+      <input class="slider" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('grayscale',this.value)"/>
       <input class="actual" type="number" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('grayscale',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section contrast">
       <div class="title">#Contraste#</div>
-      <input id="test" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('contrast',this.value)"/>
+      <input class="slider" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('contrast',this.value)"/>
       <input class="actual" type="number" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('contrast',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section brightness">
       <div class="title">#Brillo#</div>
-      <input id="test" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('brightness',this.value)"/>
+      <input class="slider" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('brightness',this.value)"/>
       <input class="actual" type="number" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('brightness',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section hue-rotate">
       <div class="title">#Hue rotation#</div>
-      <input id="test" type="range" min ="0" max="360" step ="1" value ="0" oninput="modifyValue('hue-rotate',this.value)"/>
+      <input class="slider" type="range" min ="0" max="360" step ="1" value ="0" oninput="modifyValue('hue-rotate',this.value)"/>
       <input class="actual" type="number" min ="0" max="360" step ="1" value ="0" oninput="modifyValue('hue-rotate',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section invert">
       <div class="title">#Invert#</div>
-      <input id="test" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('invert',this.value)"/>
+      <input class="slider" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('invert',this.value)"/>
       <input class="actual" type="number" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('invert',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section saturate">
       <div class="title">#Saturate#</div>
-      <input id="test" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('saturate',this.value)"/>
+      <input class="slider" type="range" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('saturate',this.value)"/>
       <input class="actual" type="number" min ="0" max="250" step ="1" value ="100" oninput="modifyValue('saturate',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" name="button" class="reset">Reset</button>
     </section>
 
     <section class="section sepia">
       <div class="title">#Sepia#</div>
-      <input id="test" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('sepia',this.value)"/>
+      <input class="slider" type="range" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('sepia',this.value)"/>
       <input class="actual" type="number" min ="0" max="100" step ="1" value ="0" oninput="modifyValue('sepia',this.value)">
-      <button type="button" name="button" onclick="reset()">Reset</button>
+      <button type="button" class="reset" name="button">Reset</button>
     </section>
 
     <button type="button" name="button" onclick="guardar()">Guardar</button>

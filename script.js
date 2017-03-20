@@ -1,6 +1,5 @@
 var img = new Image();
-//img.src = 'test.jpg';
-//img.crossOrigin = "Anonymous";
+img.src = 'images/test.jpg';
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -29,9 +28,7 @@ var maxValues = {
   'sepia' : 100
 }
 
-var initFilters = function(){
-
-}
+var initFilters = function(){}
 
 var initCanvasToDownload = function(){
 
@@ -59,19 +56,15 @@ var initCanvasPreview = function(){
 
 var modifyValue = function( type, value ){
 
-
   var unit = '%';
   if( type === 'hue-rotate' ){
     unit = 'deg'
   }
 
-  /*console.log( type + '(' + parseInt( actualValues[type] ) + unit + ')' );
-  console.log( type + '(' + parseInt(value) + unit + ')' );
-  console.log(ctx.filter);*/
-
   $( '.' + type + ' input').val( value );
   ctx.filter = ctx.filter.replace( type + '(' + parseInt( actualValues[type] ) + unit + ')' , type + '(' + parseInt(value) + unit + ')');
   actualValues[type] = parseInt(value);
+
   redrawImage();
 
 }
@@ -86,6 +79,16 @@ var guardar = function(){
   ctxToDownload.drawImage(img, 0, 0, img.width, img.height);
   var dataURL = canvasToDownload[0].toDataURL('image/jpeg',1.0);
   window.open(dataURL);
+
+}
+
+var reset = function( element ){
+
+  if( element ){
+    modifyValue( element , initValues[element] );
+  }else{
+
+  }
 
 }
 
@@ -104,3 +107,24 @@ $("#file_input").change(function(e){
     img.src = url;
 
 });
+
+$('.reset').on('click', function(){
+
+  var parent = $(this).parent();
+  if( parent.hasClass('grayscale') ){
+    reset('grayscale');
+  }else if( parent.hasClass('contrast') ){
+    reset('contrast');
+  }else if( parent.hasClass('brightness') ){
+    reset('brightness');
+  }else if( parent.hasClass('hue-rotate') ){
+    reset('hue-rotate');
+  }else if( parent.hasClass('invert') ){
+    reset('invert');
+  }else if( parent.hasClass('saturate') ){
+    reset('saturate');
+  }else if( parent.hasClass('sepia') ){
+    reset('sepia');
+  }
+
+})
